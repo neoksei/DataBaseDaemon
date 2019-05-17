@@ -39,6 +39,10 @@ def main():
         pidfile.acquire(0)
     except lockfile.AlreadyLocked:
         sys.exit(-1)
+    
+    if not os.path.isdir('./db_seleniumd'):
+        os.mkdir('./db_seleniumd')
+        
     sys.stdout = open('./db_seleniumd/db_seleniumd.log', 'a')
     pid = os.getpid()
     with open('./db_seleniumd/db_seleniumd.pid', 'w') as f:
